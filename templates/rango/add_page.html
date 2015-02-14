@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body_block %}
+
+	<h1>{{ category }}</h1><br>
+	<form id='page_form' method='POST' action='/rango/category/'>
+		{% csrf_token %}
+		{% for hidden in form.hidden_fields %}
+			{{ hidden }}
+		{% endfor %}
+
+		{% for field in form.visible_fields %}
+			{{ field.errors }}
+			{{ field.help_text }}
+			{{ field }}
+
+		{% endfor %}
+	</form>
+	<input type="Submit" name ='submit' value= 'Añadir página'>
+
+{% endblock %}

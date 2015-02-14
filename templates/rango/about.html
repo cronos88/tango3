@@ -1,12 +1,8 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load staticfiles %}
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Acerca de Rango</title>
-</head>
-<body>
+
+
+{% block body_block %}
 	<h1>Acerca de Rango!!!</h1>
-	<img src="{% static 'images/rango2.jpg' %}">
-</body>
-</html>
+	<img src="{% static 'images/rango2.jpg'%}">
+{% endblock %}

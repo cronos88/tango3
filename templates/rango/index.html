@@ -1,24 +1,23 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load staticfiles %}
 
-{% load static %}
+{% block body_block %}
+    {% if user.is_authenticated %}
+        <h1>Rango dice...Hola {{ user.username |capfirst }}!</h1>
+    {% else %}
+        <h1>Rango dice...Hola Mundo!</h1>
+    {% endif %}
 
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Rango</title>
-</head>
-<body>
-	<h1>Rango dice...Hola Mundo!</h1>
+	<a href="{% url 'add_category' %}">Crear una nueva Categoría</a>
 	{% if categories %}
 		<ul>
 			{% for category in categories %}
-				<li><a href="/rango/category/{{ category.slug }}">{{ category.name }}</a></li>
-			{% endfor %}
+                <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
+            {% endfor %}
 		</ul>
 	{% else %}
 		<strong>No hay categorias presentes.</strong>
 	{% endif %}
-	<a href="/rango/about/">About</a><br>
-	
-</body>
-</html>
+
+
+{% endblock %}
