@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rango',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -98,4 +99,9 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-LOGIN_URL = '/rango/login/'
+#Zona de Django-registration-redux
+REGISTRATION_OPEN = True   #Si es True, los usuarios pueden registrar
+ACCOUNT_ACTIVATION_DAYS = 7  #Activación de 7 días, puede usuase un valor diferente
+REGISTRATION_AUTO_LOGIN = True #Si es True, el usuario será logeado automaticamente
+LOGIN_REDIRECT_URL = '/rango/'
+LOGIN_URL = '/accounts/login/'
