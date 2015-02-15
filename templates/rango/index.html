@@ -1,23 +1,46 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block title %}Index{% endblock %}
+
 {% block body_block %}
     {% if user.is_authenticated %}
-        <h1>Rango dice...Hola {{ user.username |capfirst }}!</h1>
-    {% else %}
-        <h1>Rango dice...Hola Mundo!</h1>
-    {% endif %}
+        <div class="page-header">
+            <h1>Rango dice...Hola {{ user.username |capfirst }}!</h1>
+        </div>
+        {% else %}
+            <div class="page-header">
+                <h1>Rango dice...Hola Mundo!</h1>
+            </div>
+        {% endif %}
 
-	<a href="{% url 'add_category' %}">Crear una nueva Categoría</a>
-	{% if categories %}
-		<ul>
-			{% for category in categories %}
-                <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
-            {% endfor %}
-		</ul>
-	{% else %}
-		<strong>No hay categorias presentes.</strong>
-	{% endif %}
+    <div class="row placeholders">
+        <div class="col-xs-12 col-sm-6 placeholder">
+            <h4>Categories</h4>
+            {% if categories %}
+                <ul>
+                    {% for category in categories %}
+                        <li><a href="{% url 'category'  category.slug %}">{{ category.name }}</a></li>
+                    {% endfor %}
+                </ul>
+	        {% else %}
+		        <strong>No hay categorias presentes.</strong>
+	        {% endif %}
+        </div>
+
+        <div class="col-xs-12 col-sm-6 placeholder">
+            <h4>Pages</h4>
+            {% if pages %}
+                <ul>
+                    {% for page in pages %}
+                        <li><a href="{{ page.url }}">{{ page.title }}</a> - {{ page.category }} ({{ page.views }} view({{ page.views |pluralize}}))</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>No hay páginas en la categoría</strong>
+            {% endif %}
+        </div>
+    </div>
 
 
 {% endblock %}

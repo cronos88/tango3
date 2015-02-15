@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block body_block %}
-	<h1>Añadir Categoría</h1>
+	<div class="page-header">
+        <h1>Añadir Categoría</h1>
+	</div>
+
 	<form id='category_form' method="POST" action="/rango/add_category/">
 		{% csrf_token %}
 		{% for hidden in form.hidden_fields %}
